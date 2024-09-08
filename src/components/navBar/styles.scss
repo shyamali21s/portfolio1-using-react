@@ -1,0 +1,96 @@
+.navbar {
+    background-color: var(--yellow-theme-nav-background-color);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+
+    &_container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: inherit;
+        padding: 0px 20px;
+        flex: 1;
+
+        &_logo {
+            color: var(--yellow-theme-main-color);
+            cursor: pointer;
+        }
+
+        &_menu {
+            display: flex;
+            list-style: none;
+            text-align: center;
+
+            &_item {
+                line-height: 40px;
+                margin-right: 1.5rem;
+                font-size: 1.6rem;
+
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 3px;
+                    width: 0;
+                    background: transparent;
+                    transition: all 0.5s ease;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                    background: var(--yellow-theme-main-color);
+                }
+
+                &_links {
+                    color: var(--yellow-theme-main-color);
+                    text-decoration: none;
+                    padding: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.nav_icon {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar_container_menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: -110%;
+        opacity: 1;
+        transition: all 0.5s ease;
+        background: #181818; /* Ensure background is set to black */
+        z-index: 10; /* Ensure it covers the page content */
+        
+        &.active {
+            left: 0;
+            opacity: 1;
+            width: 100%;
+            height: 100vh; /* Cover the entire viewport */
+            z-index: 10; /* Bring it above other content */
+        }
+
+        &_item {
+            border-bottom: 1px solid #282828;
+            margin: 0px;
+            padding: 20px 0px;
+        }
+    }
+
+    .nav_icon {
+        display: block;
+        cursor: pointer;
+        color: var(--yellow-theme-main-color);
+        padding-right: 20px;
+    }
+}

@@ -1,0 +1,118 @@
+.contact {
+    &_content {
+        padding: 20px;
+
+        &_header-text {
+            color: var(--yellow-theme-sub-text-color);
+            display: inline-block;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1em;
+            letter-spacing: 0.5px;
+            position: relative;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 2px solid var(--yellow-theme-main-color);
+        }
+
+        &_header-text::before,
+        &_header-text::after {
+            position: absolute;
+           // content: '';
+            width: 2px;
+            height: 5px;
+            background-color: var(--yellow-theme-main-color);
+            bottom: -1px;
+
+        }
+
+        &_header-text::before {
+            left: 0;
+
+        }
+
+        &_header-text::after {
+            right: 0;
+
+        }
+        &_form{
+            margin-top: 30px;
+            &_controlasWrapper{
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 40px;
+                margin-bottom: 30px;
+                div{
+                    position: relative;
+                    .inputName,
+                    .inputEmail,
+                    .inputDescription{
+                        width: 100%;
+                        border:2px solid var(--yellow-theme-main-color);
+                        padding: 16px 12px;
+                        transition: all 0.5s ease;
+                        position: relative;
+                        background-color: transparent;
+                        color: var(--yellow-theme-main-color);
+
+                    }
+                    .namelabel,
+                    .emaillabel,
+                   .Descriptionlabel{
+                    font-weight: 500;
+                    font-family: 'MyCustomFont', sans-serif;;
+                    position: absolute;
+                    top: 7px;
+                    left: 12px;
+                    transition: all 0.2s ease;
+                    color: var(--yellow-theme-sub-text-color);
+                    font-size: 18px;
+
+                    }
+
+                    .inputName:focus,
+                    .inputEmail:focus,
+                    .inputDescription:focus{
+                        outline: none;
+                    }
+                    .inputName:focus + .namelabel,
+                    .inputName:valid + .namelabel,
+                    .inputEmail:focus + .emaillabel,
+                    .inputEmail:valid + .emaillabel,
+                    .inputDescription:focus +.Descriptionlabel,
+                    .inputDescription:valid +.Descriptionlabel
+                    {
+                        font-size: 18px;
+                        top: -25px;
+                        left: 0px;
+                    }
+                    
+                }
+
+            }
+        }
+        button{
+            cursor: pointer;
+            padding:10px 70px ;
+            font-size: 2rem;
+            background:transparent;
+            color: var(--yellow-theme-main-color);
+            border: 0.5px solid var(--yellow-theme-main-color);
+            border-radius: 4px;
+            font-weight: 500;
+            &:hover{
+                color: #000;
+                background:var(--yellow-theme-main-color) ;
+
+            }
+        }
+    }
+}
+@media only screen and (max-width : 768px){
+    .contact_content_form{
+        text-align: center;
+        &_controlasWrapper{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+}
