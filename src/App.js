@@ -4,8 +4,8 @@ import{Routes,Route} from 'react-router-dom'
 
 import Home from './container/home'
 import About from './container/about'
-import Resume from './container/resume'
-import SKills from './container/skills'
+import Resume from './container/resume';
+import SKills from './container/skills';
 import Portfolio from './container/portfolio'
 import Contact from './container/conatct'
 import NavBar from './components/navBar';
@@ -21,6 +21,7 @@ function App() {
     
      {/* navbar js */}
      <NavBar/>
+
      {/* main page content */}
      <div className='App_mainPAgeContent'></div>
      

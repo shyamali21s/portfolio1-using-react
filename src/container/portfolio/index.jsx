@@ -27,7 +27,7 @@ const Portfolio = () => {
             id: 2,
             name: "Calculator",
             image: imageone,
-            link:''
+            link:'https://www.google.com/'
         },
         {
             id: 2,
@@ -115,7 +115,9 @@ const Portfolio = () => {
                                 <p>
                                 {item.name}
                                 </p>
-                                <button> Visit</button>
+                                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                 <button>Visit</button>
+                                </a>
                             </div>
                             )}
                            

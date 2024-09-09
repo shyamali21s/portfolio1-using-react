@@ -74,13 +74,13 @@ const Resume=()=>{
                                     background : 'none',
                                     color : 'var(--yellow-theme-sub-text-color)',
                                     border : '1.5px solid var(--yellow-theme-main-color)'
-                                }}
-                                date="2020-present"
+                                }}>
+                                {/* date="2020-present"
                                 icon={<MdWork/>}
                                 iconStyle={{
                                     background: '#181818',
                                     color : 'var(--yellow-theme-main-color)',
-                                }}>
+                                }} */}
                                     
                                     <div className="vertical-timeline-element-title-wrapper">
                                     <h3 className="vertical-timeline-element-title">
