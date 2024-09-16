@@ -4,3 +4,14 @@
         height:calc(100% - 80px);
     }
 }
+html {
+    scroll-behavior: smooth;  // Smooth scrolling when navigating
+  }
+  
+  .App_mainPageContent {
+    section {
+      padding: 30px 0;  // Add some padding for spacing between sections
+      min-height: 100vh;  // Make each section at least the height of the viewport
+    }
+  }
+  

@@ -6,7 +6,32 @@ import './style.scss';
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { MdWork } from "react-icons/md";
+import { useState,useEffect } from "react";
 const Resume=()=>{
+    const [inView, setInView] = useState(false);
+    useEffect(() => {
+        const section = document.getElementById("resume");
+        console.log(section); // Check if section is correctly selected
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    console.log(entry.isIntersecting); // Check if the section is intersecting
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                    } else {
+                        setInView(false);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+    
+        if (section) {
+            observer.observe(section);
+        }
+        return () => observer.disconnect();
+    }, []);
+    
     return(
         <section id="resume" className="resume">
         <PageHeaderContent

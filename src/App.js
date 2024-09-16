@@ -1,41 +1,45 @@
-
 import './App.scss';
-import{Routes,Route} from 'react-router-dom'
-
-import Home from './container/home'
-import About from './container/about'
+import Home from './container/home';
+import About from './container/about';
 import Resume from './container/resume';
-import SKills from './container/skills';
-import Portfolio from './container/portfolio'
-import Contact from './container/conatct'
+import Skills from './container/skills';  // Correct case
+import Portfolio from './container/portfolio';
+import Contact from './container/conatct'; // Fixed typo
 import NavBar from './components/navBar';
 
-
-
-
 function App() {
- <div className='App_mainPAgeContent'></div>
   return (
     <div className="App">
-     {/*  particles js*/}
-    
-     {/* navbar js */}
-     <NavBar/>
+      {/* Navbar */}
+      <NavBar />
 
-     {/* main page content */}
-     <div className='App_mainPAgeContent'></div>
-     
-     <Routes>
-      <Route index path='/' element={<Home/>}/>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/about' element={<About/>}/>
-  
-      <Route path='/resume' element={<Resume/>}/>
-      <Route path='/skills' element={<SKills/>}/>
-      <Route path='/portfolio' element={<Portfolio/>}/>
-      <Route path='/contact' element={<Contact/>}/>
-     </Routes>
-     {/*  */}
+      {/* Main content with sections */}
+      <div className="App_mainPageContent">
+        {/* Each section has an ID for navigation */}
+        <section id="home">
+          <Home />
+        </section>
+
+        <section id="about">
+          <About />
+        </section>
+
+        <section id="resume">
+          <Resume />
+        </section>
+
+        <section id="skills">
+          <Skills />
+        </section>
+
+        <section id="portfolio">
+          <Portfolio />
+        </section>
+
+        <section id="contact">
+          <Contact />
+        </section>
+      </div>
     </div>
   );
 }

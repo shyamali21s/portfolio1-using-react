@@ -1,36 +1,33 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaBars, FaReact } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 import { HiX } from "react-icons/hi";
 import './styles.scss';
 
 const data = [
     {
         label: 'Home',
-        to: '/Home'
+        to: '#home' // Anchor link to the "home" section
     },
     {
         label: 'About Me',
-        to: '/About'
+        to: '#about' // Anchor link to the "about" section
     },
     {
         label: 'Skills',
-        to: '/Skills'
+        to: '#skills' // Anchor link to the "skills" section
     },
     {
         label: 'Portfolio',
-        to: '/Portfolio'
+        to: '#portfolio' // Anchor link to the "portfolio" section
     },
     {
         label: 'Resume',
-        to: '/Resume'
+        to: '#resume' // Anchor link to the "resume" section
     },
     {
         label: 'Contact me',
-        to: '/Contact'
+        to: '#contact' // Anchor link to the "contact" section
     },
-    
 ];
 
 const NavBar = () => {
@@ -48,20 +45,20 @@ const NavBar = () => {
         <div>
             <nav className="navbar">
                 <div className="navbar_container">
-                    <Link to={'/'} className="navbar_container_logo">
+                    <a href="#home" className="navbar_container_logo">
                         <FaReact size={30} />
-                    </Link>
+                    </a>
                 </div>
                 <ul className={`navbar_container_menu ${toggleIcon ? "active" : ""}`}>
                     {data.map((item, key) => (
                         <li key={key} className="navbar_container_menu_item">
-                            <Link 
-                                className="navbar_container_menu_item_links" 
-                                to={item.to} 
+                            <a
+                                className="navbar_container_menu_item_links"
+                                href={item.to} // Use anchor link for scrolling
                                 onClick={handleLinkClick}
                             >
                                 {item.label}
-                            </Link>
+                            </a>
                         </li>
                     ))}
                 </ul>

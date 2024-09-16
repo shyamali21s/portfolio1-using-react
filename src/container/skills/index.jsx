@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
 import PageHeaderContent from "../../components/pageHeaderContent";
 import { skillsData } from "./utils";
@@ -7,6 +7,31 @@ import { Line } from "rc-progress";
 import './style.scss';
 
 const SKills = () => {
+    const [inView, setInView] = useState(false); 
+
+    useEffect(() => {
+        const section = document.getElementById("skills");
+        console.log("Section:", section); // Debug log
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    console.log("Intersection:", entry.isIntersecting); // Debug log
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                    } else {
+                        setInView(false);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        if (section) {
+            observer.observe(section);
+        }
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <section id="skills" className="skills">
             <PageHeaderContent
@@ -16,11 +41,10 @@ const SKills = () => {
                 {
                     skillsData.map((item, i) => (
                         <div key={i} className="skills_content-wrapper_inner-content">
-                            {/* Outer animation for each skill category */}
                             <Animate
-                                play={true} // Animation should be played
-                                duration={1} // Animation duration
-                                delay={0.3} // Delay before animation starts
+                                play={inView} // Trigger animation based on visibility
+                                duration={1}
+                                delay={0.3}
                                 start={{
                                     opacity: 0,
                                     transform: 'translateX(-200px)',
@@ -36,12 +60,12 @@ const SKills = () => {
                                         item.data.map((skillItem, j) => (
                                             <AnimateKeyframes
                                                 key={j}
-                                                play={true}
-                                                duration={1} // Animation duration
+                                                play={inView} // Trigger animation based on visibility
+                                                duration={1}
                                                 keyframes={["opacity: 0", "opacity: 1", "transform: translateX(0px)"]}
                                                 iterationCount="1"
                                             >
-                                                <div className="progressbar_wrapper" key={j}>
+                                                <div className="progressbar_wrapper">
                                                     <p>{skillItem.skillName}</p>
                                                     <Line
                                                         percent={skillItem.percentage}

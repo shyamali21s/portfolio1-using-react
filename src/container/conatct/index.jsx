@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import './style.scss';
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Animate } from "react-simple-animate";
@@ -7,6 +7,27 @@ import emailjs from 'emailjs-com';
 
 const Contact = () => {
     const form = useRef();
+    const [inView, setInView] = useState(false);
+
+    // IntersectionObserver to detect when the Contact section is in view
+    useEffect(() => {
+        const section = document.getElementById("contact");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                    } else {
+                        setInView(false);
+                    }
+                });
+            },
+            { threshold: 0.3 } // Trigger when 30% of the section is visible
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -29,7 +50,7 @@ const Contact = () => {
                     icon={<BsInfoCircleFill size={40} />} />
                 <div className="contact_content">
                     <Animate
-                        play
+                        play={inView} // Only play animation when the section is in view
                         duration={1}
                         delay={0}
                         start={{
@@ -38,10 +59,10 @@ const Contact = () => {
                         end={{
                             transform: "translateX(0px)"
                         }}>
-                        <h3 className="contact_content_header-text">Let's talk </h3>
+                        <h3 className="contact_content_header-text">Let's talk</h3>
                     </Animate>
                     <Animate
-                        play
+                        play={inView} // Only play animation when the section is in view
                         duration={1}
                         delay={0}
                         start={{
@@ -53,11 +74,11 @@ const Contact = () => {
                         <div className="contact_content_form">
                             <form ref={form} onSubmit={sendEmail} className="contact_content_form_controlasWrapper">
                                 <div>
-                                    <input required name="name" className="inputName" type={"text"} />
+                                    <input required name="name" className="inputName" type="text" />
                                     <label htmlFor="name" className="namelabel">Name</label>
                                 </div>
                                 <div>
-                                    <input required name="email" className="inputEmail" type={"email"} />
+                                    <input required name="email" className="inputEmail" type="email" />
                                     <label htmlFor="email" className="emaillabel">Email</label>
                                 </div>
                                 <div>
@@ -65,14 +86,13 @@ const Contact = () => {
                                     <label htmlFor="message" className="Descriptionlabel">Description</label>
                                     <button type="submit">Submit</button>
                                 </div>
-                               
                             </form>
                         </div>
                     </Animate>
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
 export default Contact;

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Animate } from "react-simple-animate";
 import './style.scss';
+import {useState,useEffect} from "react"
 
 const Home = () => {
     const navigate = useNavigate();
@@ -9,6 +10,26 @@ const Home = () => {
     const handleNavigateToContactPage = () => {
         navigate('/contact');
     };
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const section = document.getElementById("about");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                    } else {
+                        setInView(false);
+                    }
+                });
+            },
+            { threshold: 0.3 } // Trigger when 30% of the section is visible
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <section id="home" className="home">
